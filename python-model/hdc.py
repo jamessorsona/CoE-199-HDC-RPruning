@@ -1,16 +1,5 @@
-import math                       
-import matplotlib.pyplot as plt   
-import random                     
 import numpy as np                
-import numpy.linalg as lin        
-import scipy.special as ss
-import pickle
-import multiprocessing
 import time
-import pandas as pd
-import sys
-import csv
-import seaborn as sns
 
 def distance(A,B):
     return sum(np.logical_and(A,B))
@@ -18,56 +7,47 @@ def distance(A,B):
 def perm(A,N):
     return np.roll(A,N)
 
+# 04/18/2023 optimized generation of random hv
 def u_gen_rand_hv(D,d):
-    # Sanity checker
-    if (D % 2):
-        print("Error - D can't be an odd number")
-        return 0
-    # generate
-    chosen = random.sample(range(D), k =int(D*d))
-    rand_hv = np.array([1 if x in chosen else 0 for x in range(D)])
-
-    return rand_hv
-
-def create_item_mem(N,D,d):
-    keys = range(N)
-    seed = u_gen_rand_hv(D,d) #Generate List of random 1 and 0 with probability d
-    tracker = pd.Series(np.copy(seed)) #Tracks already flipped bits
-    bit_step = int(np.sum(seed)/(len(keys)-1))
-    hvs = [seed]
-
-    for i in range(1,len(keys)):
-        next_hv = np.copy(hvs[i-1])
-
-        # TURN OFF K bits
-        turnoff_index = random.sample(list(tracker[tracker==1].index), bit_step)
-        tracker[turnoff_index]=-1 #Update to already flipped
-        next_hv[turnoff_index]=0 #flip to 0
-
-        # TURN ON K bits
-        turnon_index = random.sample(list(tracker[tracker==0].index), bit_step)
-        tracker[turnon_index]=-1 #Update to already flipped
-        next_hv[turnon_index]=1 #Flip to 1
-
-        hvs.append(next_hv)
-       
-    return dict(zip(keys,hvs))
-
-def hdc_encode(voice,voice_im,D,d,Q=10, t1 = 0, remove_list = []): #d = density, Q - quqntization steps, t1 first threshold
-    voice = [ int(math.floor(x*(Q/2))+(Q/2)) if x<1 else int(math.floor((x-0.0001)*(Q/2))+(Q/2)) for x in voice]
-    feature_hv_list = [voice_im[x] for x in voice]
-    feature_hv_list = np.array([perm(feature_hv_list[x],x) for x in range(len(feature_hv_list))])
+    if D % 2 != 0:
+        raise ValueError("Error - D must be an even number")
     
-    threshold = t1 #first threshold
-    bundle = np.sum(feature_hv_list,axis=0)
+    chosen = np.random.choice(D, size=int(D*d), replace=False)
+    rand_hv = np.zeros(D, dtype=bool)
+    rand_hv[chosen] = True
     
+    return rand_hv.astype(int)
+
+# 04/18/2023 optimized generation of item memory
+def create_item_mem(N,D,d, first=None, last=None):
+    # insert nice code here
+    item_mem = {}
+    if first is None:
+        first = u_gen_rand_hv(D,d)
+    if last is None:
+        last = u_gen_rand_hv(D,d)
+    item_mem.update({0:first})
+    item_mem.update({N-1:last})
+    for i in range(1,N-1):
+        temp_hv = np.concatenate((first[:int((D/N)*(N-i))],last[int((D/N)*(N-i)):])) 
+        item_mem.update({i:temp_hv})    
+    return item_mem
+
+# 04/18/2023 optimized encoding
+def hdc_encode(voice, voice_im, D, d, Q=10, t1=0, remove_list=[]):
+    voice = np.array(voice)
+    voice_quantized = np.where(voice < 1, np.floor(voice * (Q / 2)) + (Q / 2), np.floor((voice - 0.0001) * (Q / 2)) + (Q / 2)).astype(int)
+    feature_hv_list = np.array([voice_im[x] for x in voice_quantized])
+    feature_hv_list = np.array([perm(feature_hv_list[x], x) for x in range(len(feature_hv_list))])
+
+    threshold = t1  # first threshold
+    bundle = np.einsum('ij->j', feature_hv_list)
+
     if remove_list:
-        np.delete(bundle, remove_list)
-        
-    #for threshold in range(1000):
-    bndl = np.where(bundle>threshold,1,0)
-    #    print(threshold,sum(bndl))
-    return bndl
+        bundle = np.delete(bundle, remove_list)
+
+    bndl = bundle > threshold
+    return bndl.astype(int)
 
 def hdc_enc(args):
     return hdc_encode(*args)

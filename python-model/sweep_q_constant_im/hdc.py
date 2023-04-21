@@ -19,29 +19,19 @@ def u_gen_rand_hv(D,d):
     return rand_hv.astype(int)
 
 # 04/18/2023 optimized generation of item memory
-def create_item_mem(N, D, d):
-    keys = np.arange(N)
-    seed = u_gen_rand_hv(D, d) #Generate List of random 1 and 0 with probability d
-    tracker = np.copy(seed) #Tracks already flipped bits
-    bit_step = int(np.sum(seed) / (N-1))
-    hvs = [seed]
-
-    for i in range(1, N):
-        next_hv = hvs[i-1].copy()
-
-        # TURN OFF K bits
-        turnoff_index = np.random.choice(np.flatnonzero(tracker), size=bit_step, replace=False)
-        tracker[turnoff_index] = False #Update to already flipped
-        next_hv[turnoff_index] = False #flip to 0
-
-        # TURN ON K bits
-        turnon_index = np.random.choice(np.flatnonzero(~tracker), size=bit_step, replace=False)
-        tracker[turnon_index] = True #Update to already flipped
-        next_hv[turnon_index] = True #Flip to 1
-
-        hvs.append(next_hv)
-       
-    return dict(zip(keys, hvs))
+def create_item_mem(N,D,d, first=None, last=None):
+    # insert nice code here
+    item_mem = {}
+    if first is None:
+        first = u_gen_rand_hv(D,d)
+    if last is None:
+        last = u_gen_rand_hv(D,d)
+    item_mem.update({0:first})
+    item_mem.update({N-1:last})
+    for i in range(1,N-1):
+        temp_hv = np.concatenate((first[:int((D/N)*(N-i))],last[int((D/N)*(N-i)):])) 
+        item_mem.update({i:temp_hv})    
+    return item_mem
 
 # 04/18/2023 optimized encoding
 def hdc_encode(voice, voice_im, D, d, Q=10, t1=0, remove_list=[]):

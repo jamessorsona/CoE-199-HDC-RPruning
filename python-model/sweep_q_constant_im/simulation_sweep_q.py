@@ -61,16 +61,16 @@ if __name__ == '__main__':
         first = hdc.u_gen_rand_hv(D,d)
         last = hdc.u_gen_rand_hv(D,d)
 
+        accuracy_line = []
+
         for Q in Q_sweeps:
             print(f"Testing with Q: {Q} | ", end="")
-
-            accuracy_line = []
 
             # create constant item memory
             voice_im = hdc.create_item_mem(Q, D, d, first, last)
             # save item memory to a csv file
             im = pd.DataFrame(voice_im.values())
-            im.to_csv(f"{str(D)[0]}k_{int(d*100)}/IM_Dimension_{D}_density_{int(d*100)}_Q_{Q}.csv", index=False)
+            im.to_csv(f"{str(D)[0]}k_{int(d*100)}/trial_{trial}/IM_Dimension_{D}_density_{int(d*100)}_Q_{Q}.csv", index=False)
 
             keys = range(26)
             voice_am = dict()
