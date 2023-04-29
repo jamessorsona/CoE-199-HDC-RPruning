@@ -15,3 +15,7 @@ Project Advisers:
 4. [Sherry Joy Alvionne S. Baquiran](alvionne.baquiran@eee.upd.edu.ph)
 5. [Lawrence Roman A. Quizon](lawrence.quizon@eee.upd.edu.ph)
 6. [Allen Jason Tan](allen.jason.tan@eee.upd.edu.ph)
+
+# Python Model
+
+# Digital Hardware Design
