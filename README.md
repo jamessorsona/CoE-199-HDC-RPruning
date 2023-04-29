@@ -24,8 +24,18 @@ This folder contains the ISOLET dataset as a `pickle` object.
 This folder contains all the files for the Python model.
 
 `hdc.py` is the main Python file which contains all the necessary modules for the general HDC algorithm. \
-`hdc_dimension_sparsifier.py` is contains the implementation of the redundancy pruning. \
-`sparseSpeech.ipynb` is the Jupyter notebook used for testing the entire the model. \
+`hdc_dimension_sparsifier.py` contains the implementation of the redundancy pruning. \
+`sparseSpeech.ipynb` is the Jupyter notebook used for testing the entire the model. 
+
+The `sweep_q_constant_im` contains the necessary scripts and results in finding the quantization level `Q` that yields the highest accuracy. This was done by sweeping `Q` while using a constant item memory, constant training threshold, and encoding thresholds.\
+The encoding and training thresholds used for each density is listed below.\
+|Item Memory Density|Encoding Threshold|Training Threshold|
+|:---:|:---:|:---:|
+|1%|6|50|
+|2%|12|35|
+|5%|30|40|
+|10%|65|45|
+
 
 # digital-hardware-design
 This folder contains all the files for the digital hardware design.
