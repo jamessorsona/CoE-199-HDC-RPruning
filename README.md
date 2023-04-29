@@ -16,6 +16,6 @@ Project Advisers:
 5. [Lawrence Roman A. Quizon](lawrence.quizon@eee.upd.edu.ph)
 6. [Allen Jason Tan](allen.jason.tan@eee.upd.edu.ph)
 
-# Python Model
+# python-model
 
-# Digital Hardware Design
+# digital-hardware-design
