@@ -27,10 +27,11 @@ def create_item_mem(N,D,d, first=None, last=None):
     if last is None:
         last = u_gen_rand_hv(D,d)
     item_mem.update({0:first})
-    item_mem.update({N-1:last})
+    
     for i in range(1,N-1):
-        temp_hv = np.concatenate((first[:int((D/N)*(N-i))],last[int((D/N)*(N-i)):])) 
-        item_mem.update({i:temp_hv})    
+        temp_hv = np.concatenate((last[:int((D/(N-1))*(N-i-1))],first[int((D/(N-1))*(N-i-1)):])) 
+        item_mem.update({i:temp_hv})
+    item_mem.update({N-1:last})
     return item_mem
 
 # 04/18/2023 optimized encoding
