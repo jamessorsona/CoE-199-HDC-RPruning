@@ -16,6 +16,9 @@ Project Advisers:
 5. [Lawrence Roman A. Quizon](https://mail.google.com/mail/?view=cm&source=mailto&to=lawrence.quizon@eee.upd.edu.ph)
 6. [Allen Jason Tan](https://mail.google.com/mail/?view=cm&source=mailto&to=allen.jason.tan@eee.upd.edu.ph)
 
+# isolet
+This folder contains the ISOLET dataset as a `pickle` object.
+
 # python-model
 This folder contains all the files for the Python model.
 
