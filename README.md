@@ -17,5 +17,7 @@ Project Advisers:
 6. [Allen Jason Tan](allen.jason.tan@eee.upd.edu.ph)
 
 # python-model
+This folder contains all the files for the Python model.
 
 # digital-hardware-design
+This folder contains all the files for the digital hardware design.
