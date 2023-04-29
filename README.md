@@ -19,8 +19,14 @@ Project Advisers:
 # isolet
 This folder contains the ISOLET dataset as a `pickle` object.
 
+
 # python-model
 This folder contains all the files for the Python model.
 
+`hdc.py` is the main Python file which contains all the necessary modules for the general HDC algorithm.
+`hdc_dimension_sparsifier.py` is contains the implementation of the redundancy pruning.
+`sparseSpeech.ipynb` is the Jupyter notebook used for testing the entire the model.
+
 # digital-hardware-design
 This folder contains all the files for the digital hardware design.
+

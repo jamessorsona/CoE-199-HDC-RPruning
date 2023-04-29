@@ -80,25 +80,6 @@ def hdc_encode(voice, voice_im, D, d, Q=10, t1=0, remove_list=[]):
 def hdc_enc(args):
     return hdc_encode(*args)
 
-# def dimension_sparsifier(non_bin_reg, dimensionality, sparsity, remove_list):
-#     remove_num = int(sparsity * dimensionality)
-#     #print(remove_num)
-#     max_list = non_bin_reg[0]
-#     min_list = non_bin_reg[0]
-    
-#     for i in range(1,len(non_bin_reg)):
-#         max_list = np.maximum(max_list, non_bin_reg[i])
-#         min_list = np.where(np.logical_or(min_list>=non_bin_reg[i], min_list==0), non_bin_reg[i], min_list)
-
-#     var_list = np.subtract(max_list, min_list)
-#     var_list = sorted(enumerate(var_list), key=lambda x:x[1])
-#     idx, value = map(list, zip(*var_list))
-#     remove_list = idx[0:remove_num]
-
-#     for i in range(len(non_bin_reg)):
-#         np.delete(non_bin_reg[i], remove_list)
-#     return non_bin_reg, remove_list
-
 def similarity_search(voice,voice_im,voice_am,D,d,Q,t1, remove_list):
     start = time.time()
     sim_score = 0
