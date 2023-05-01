@@ -23,7 +23,7 @@ This folder contains the ISOLET dataset as a `pickle` object.
 # python-model
 This folder contains all the files for the Python model.
 
-Reuirements: (Installation: `pip3 install -r requirements.txt`)
+Requirements: (Installation: `pip3 install -r requirements.txt`)
 * numpy
 * pandas
 
