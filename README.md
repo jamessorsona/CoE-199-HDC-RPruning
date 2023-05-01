@@ -31,6 +31,8 @@ Requirements: (Installation: `pip3 install -r requirements.txt`)
 `hdc_dimension_sparsifier.py` contains the implementation of the redundancy pruning. \
 `sparseSpeech.ipynb` is the Jupyter notebook used for testing the entire the model. 
 
+The `encoding_training_threshold` folder contains the script for finding an optimal encoding and training threshold. Using a constant quantization level of `Q=16`, the encoding and training thresholds are swept with specific intervals for each respective hypervector density.
+
 The `sweep_q_constant_im` folder contains the necessary scripts and results in finding the quantization level `Q` that yields the highest accuracy. For each density, a constant training and encoding threshold is used. The accuracy results were averaged over 10 trials (20 trials for `D=4096`). Each trial per quantization level for the dimensionality being tested, the item memory is preserved using approximate linear mapping.
 The encoding and training thresholds used for each density is listed below.
 |Item Memory Density|Encoding Threshold|Training Threshold|
