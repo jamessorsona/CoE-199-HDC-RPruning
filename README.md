@@ -23,6 +23,10 @@ This folder contains the ISOLET dataset as a `pickle` object.
 # python-model
 This folder contains all the files for the Python model.
 
+Reuirements: (Installation: `pip3 install -r requirements.txt`)
+* numpy
+* pandas
+
 `hdc.py` is the main Python file which contains all the necessary modules for the general HDC algorithm. \
 `hdc_dimension_sparsifier.py` contains the implementation of the redundancy pruning. \
 `sparseSpeech.ipynb` is the Jupyter notebook used for testing the entire the model. 
