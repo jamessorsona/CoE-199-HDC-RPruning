@@ -44,5 +44,31 @@ The encoding and training thresholds used for each density is listed below.
 
 
 # digital-hardware-design
-This folder contains all the files for the digital hardware design.
+This folder contains all the files for the digital hardware design. \
+* `set_synopsys.sh` is the shell script for setting the necessary environment variables needed to run Synopsys tools.\
+## sparse_hdc_rpruning
+This folder is the main project folder for the project.
+### cons
+This folder contains all the constraints scripts.
+### libs
+This folder contains the libraries. GlobalFoundries 22nm FDX is used for this project. 
+### logs
+This folder contains all the log files.
+### mapped
+### rtl
+This folder contains the register-transfer-level codes.
+### sim
+This folder contains the output log files from the synthesis process.
+
+# python-helper-scripts
+This folder contains helper scripts for automating simulation, compilation, synthesis, and generating reports.
+
+# software-test-reports
+
+# post-synthesis_sim_tb_netlists
+
+# rtl-simulation
+
+
+# synthesis-results
 
