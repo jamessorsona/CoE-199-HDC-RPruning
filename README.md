@@ -44,8 +44,8 @@ The encoding and training thresholds used for each density is listed below.
 
 
 # digital-hardware-design
-This folder contains all the files for the digital hardware design. \
-* `set_synopsys.sh` is the shell script for setting the necessary environment variables needed to run Synopsys tools.\
+This folder contains all the files for the digital hardware design.
+* `set_synopsys.sh` is the shell script for setting the necessary environment variables needed to run Synopsys tools.
 ## sparse_hdc_rpruning
 This folder is the main project folder for the project.
 ### cons
