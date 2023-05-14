@@ -9,8 +9,8 @@ Usage: python3 synthesis_automation_maker.py [file.sv]
 
 def create_tcl_file(tcl_file, filename, raw_filename):
     with open(tcl_file, "a") as fh:
-        fh.write("set search_path \"$search_path mapped lib cons rtl\"")
-        fh.write("set link_library */cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db")
+        fh.write("set search_path \"$search_path mapped lib cons rtl\"\n")
+        fh.write("set link_library \"* /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db\"\n")
 
         fh.write(f"read_sverilog {raw_filename} > logs/{filename}/{filename}-read_sverilog.log\n")
 
@@ -73,6 +73,12 @@ def main():
 
     tcl_file = f"synthesize_{filename}.tcl"
 
+    # check if tcl file already exists
+    if os.path.exists(tcl_file):
+        print(f"WARNING! {tcl_file} already exists. Overwriting...")
+        os.remove(tcl_file)
+    print(f"Creating {tcl_file}...")
+    # create tcl file
     create_tcl_file(tcl_file, filename, raw_filename)
     # print success message
     print(f"Success! Created {tcl_file}")

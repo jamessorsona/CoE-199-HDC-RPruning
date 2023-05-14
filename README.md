@@ -42,10 +42,12 @@ The encoding and training thresholds used for each density is listed below.
 |5%|30|40|
 |10%|65|45|
 
+## software-test-reports
 
 # digital-hardware-design
 This folder contains all the files for the digital hardware design.
 * `set_synopsys.sh` is the shell script for setting the necessary environment variables needed to run Synopsys tools.
+
 ## sparse_hdc_rpruning
 This folder is the main project folder for the project.
 ### cons
@@ -60,15 +62,17 @@ This folder contains the register-transfer-level codes.
 ### sim
 This folder contains the output log files from the synthesis process.
 
-# python-helper-scripts
+## item_memories
+This folder contains the hypervectors used for the item memory. `hv0` is the level 0 hypervector and `hv1` is the level 1 hypervector.
+
+## rtl-simulation
+
+## synthesis-results
+
+## post-synthesis_sim_tb_netlists
+
+# helper-scripts
 This folder contains helper scripts for automating simulation, compilation, synthesis, and generating reports.
 
-# software-test-reports
 
-# post-synthesis_sim_tb_netlists
-
-# rtl-simulation
-
-
-# synthesis-results
 
