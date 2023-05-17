@@ -57,8 +57,9 @@ This folder contains the libraries. GlobalFoundries 22nm FDX is used for this pr
 ### logs
 This folder contains all the log files.
 ### mapped
+This folder contains the synthesized designs.
 ### rtl
-This folder contains the register-transfer-level codes.
+This folder contains the register-transfer-level code.
 ### sim
 This folder contains the output log files from the synthesis process.
 
