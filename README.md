@@ -1,4 +1,4 @@
-# EEE199-HDC-RPruning
+# EEE199-SparseHDC-RPruning
 
 Project Title: **Redundancy Pruning for Associative Memories in Sparse Hyperdimensional Computing for Energy-Efficient Speech Recognition**
 
