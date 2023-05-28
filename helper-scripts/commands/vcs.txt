@@ -1,0 +1,8 @@
+source ../set_synopsys.sh
+
+# Compilation
+vcs ../rtl/updown.v tb_updown.v -full64 -debug_pp
+./simv
+
+# Viewing the Simulation Results through DVE
+dve -full64 &

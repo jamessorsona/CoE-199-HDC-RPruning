@@ -1,0 +1,6 @@
+source ../set_synopsys.sh
+
+# Using PT for Power Analysis
+$dumpfile("updown.dump");
+$dumpvars(0,tb_updown);
+pt_shell

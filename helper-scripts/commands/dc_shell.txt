@@ -1,0 +1,26 @@
+source ../set_synopsys.sh
+
+# Using DC for Synthesizing Design
+design_vision
+dc_shell
+read_sverilog
+current_design
+link
+check_design
+compile
+report_constraint -all_violators
+report_units    
+report_area
+report_timing
+report_power
+write_file -format verilog -hierarchy -output mapped/updown_mapped.v
+write_file -format ddc -hierarchy -output mapped/updown_mapped.ddc
+write_sdf mapped/updown_mapped.sdf
+write_sdc mapped/updown_mapped.sdc
+
+# Functional Verification of Synthesized Design
+## append a timescale directive inside the mapped file
+## `timescale 1ns/1ps
+## append the sdf annotation inside the testbench after $vcspluson; line
+## $sdf_annotate("../mapped/updown_mapped.sdf", UUT);
+vcs tb_updown.v ../mapped/updown_mapped.v /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/verilog/GF22FDX_SC7P5T_116CPP_BASE_CSC20L.v /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/verilog/prim.v -full64 -debug_pp +neg_tchk -R -l vcs.log
